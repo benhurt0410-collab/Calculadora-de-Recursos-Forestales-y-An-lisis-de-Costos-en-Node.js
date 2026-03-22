@@ -1,0 +1,2 @@
+# Calculadora-de-Recursos-Forestales-y-An-lisis-de-Costos-en-Node.js
+Este proyecto es una herramienta de consola desarrollada en JavaScript (Node.js) diseñada para automatizar cálculos de impacto ambiental y financiero. Permite determinar la cantidad de árboles necesarios para producir un volumen específico de resmas de papel, además de incluir módulos para el cálculo de IVA y operaciones aritméticas básicas.
