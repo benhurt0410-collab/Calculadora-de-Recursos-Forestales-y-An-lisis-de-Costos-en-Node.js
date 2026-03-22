@@ -1,0 +1,32 @@
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// A helper function to make questions look cleaner
+const ask = (question) => new Promise((resolve) => rl.question(question, resolve));
+
+async function main() {
+  console.log("--- Customer Information System ---");
+
+  // Collecting the inputs
+  const name = await ask('What is your name? ');
+  const address = await ask('What is your address? ');
+  const phone = await ask('What is your phone number? ');
+
+  // Generating the formatted message
+  console.log('\n-----------------------------------');
+  console.log('       REGISTRATION SUCCESS        ');
+  console.log('-----------------------------------');
+  console.log(`User Name:    ${name}`);
+  console.log(`Address:      ${address}`);
+  console.log(`Phone Number: ${phone}`);
+  console.log('-----------------------------------');
+  console.log('Thank you for providing your details!');
+
+  rl.close();
+}
+
+main();

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <h1>Mi página web</h1>
+  
+  <div id="contenedor"></div>
+  
+  <div id="contenedor-2"></div>
+
+  <script>
+    // Primer párrafo
+    const nuevoParrafo = document.createElement("p");
+    nuevoParrafo.textContent = "¡Hola! Este párrafo fue creado con JavaScript.";
+    const destino = document.getElementById("contenedor");
+    destino.appendChild(nuevoParrafo);
+
+    // Segundo párrafo
+    const nuevoParrafo_2 = document.createElement("p");
+    nuevoParrafo_2.textContent = "Este párrafo fue creado con JavaScript #2.";
+    
+    // Ahora 'destino_2' sí encontrará el ID en el HTML
+    const destino_2 = document.getElementById("contenedor-2");
+    destino_2.appendChild(nuevoParrafo_2);
+  </script>
+
+</body>
+</html>

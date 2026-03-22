@@ -1,0 +1,40 @@
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+const ask = (question) => new Promise((resolve) => rl.question(question, resolve));
+
+async function main() {
+  console.log("--- Calculadora de Suma ---");
+
+  // Recolectando los datos
+  const input1 = await ask('Introduce el primer número: ');
+  const input2 = await ask('Introduce el segundo número: ');
+
+  // Proceso: Convertir de String a Number para poder sumar
+  const num1 = Number(input1);
+  const num2 = Number(input2);
+  const resultado = num1 + num2;
+
+  // Mostrando el resultado
+  console.log('\n-----------------------------------');
+  console.log('         RESULTADO DE SUMA         ');
+  console.log('-----------------------------------');
+  
+  if (isNaN(resultado)) {
+    console.log('Error: Uno de los valores ingresados no es un número válido.');
+  } else {
+    console.log(`El primer número es:  ${num1}`);
+    console.log(`El segundo número es: ${num2}`);
+    console.log(`La suma total es:     ${resultado}`);
+  }
+  
+  console.log('-----------------------------------');
+
+  rl.close();
+}
+
+main();

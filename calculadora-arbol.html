@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Impacto Forestal</title>
+    <style>
+        body { font-family: monospace; background-color: #f4f4f4; padding: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); max-width: 400px; }
+        #reporte { margin-top: 20px; white-space: pre-wrap; border-top: 1px dashed #ccc; padding-top: 10px; }
+        input { padding: 8px; width: 80%; margin-bottom: 10px; }
+        button { padding: 8px 15px; cursor: pointer; background: #2e7d32; color: white; border: none; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>--- Calculadora de Impacto Forestal ---</h2>
+        
+        <label for="resmasInput">¿Cuántas resmas de papel necesitas calcular?</label><br><br>
+        <input type="number" id="resmasInput" placeholder="Ej: 1000">
+        <button onclick="calcularImpacto()">Calcular</button>
+
+        <div id="reporte">
+            </div>
+    </div>
+
+    <script>
+        function calcularImpacto() {
+            // Constante de producción
+            const RESMAS_POR_ARBOL = 585.93;
+            
+            // Obtener el valor del input
+            const input = document.getElementById("resmasInput").value;
+            const cantidadResmas = parseFloat(input);
+            const reporteDiv = document.getElementById("reporte");
+
+            // Limpiar reporte previo
+            reporteDiv.innerHTML = "";
+
+            // Validación y Lógica
+            if (isNaN(cantidadResmas) || cantidadResmas <= 0) {
+                reporteDiv.innerHTML = "<span style='color:red;'>Error: Ingresa una cantidad de resmas válida.</span>";
+                return;
+            }
+
+            const arbolesNecesarios = cantidadResmas / RESMAS_POR_ARBOL;
+
+            // Generar el reporte (usando Template Literals para mantener el formato)
+            reporteDiv.innerHTML = `
+---------------------------------------
+        ANÁLISIS DE RECURSOS          
+---------------------------------------
+Resmas deseadas:      ${cantidadResmas}
+Producción por árbol: ${RESMAS_POR_ARBOL} resmas
+---------------------------------------
+Árboles exactos:      ${arbolesNecesarios.toFixed(4)}
+Árboles a utilizar:   ${Math.ceil(arbolesNecesarios)} (mínimo entero)
+---------------------------------------
+Recuerda usar el papel de forma responsable.`;
+        }
+    </script>
+
+</body>
+</html>
