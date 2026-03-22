@@ -1,44 +1,28 @@
-const readline = require('readline');
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+async function iniciarCalculadora() {
+    alert("--- Calculadora de Impacto Forestal ---");
 
-const ask = (question) => new Promise((resolve) => rl.question(question, resolve));
-
-async function main() {
-  console.log("--- Calculadora de Impacto Forestal ---");
-
-  // Constante de producción
-  const RESMAS_POR_ARBOL = 585.93;
-
-  // Recolectando la cantidad de resmas deseadas
-  const inputResmas = await ask('¿Cuántas resmas de papel necesitas calcular? ');
-  const cantidadResmas = Number(inputResmas);
-
-  // Proceso: Cálculo de árboles necesarios
-  // Fórmula: Árboles = Resmas Totales / Resmas por Árbol
-  const arbolesNecesarios = cantidadResmas / RESMAS_POR_ARBOL;
-
-  // Generando el reporte
-  console.log('\n---------------------------------------');
-  console.log('         ANÁLISIS DE RECURSOS          ');
-  console.log('---------------------------------------');
-  
-  if (isNaN(cantidadResmas) || cantidadResmas <= 0) {
-    console.log('Error: Ingresa una cantidad de resmas válida.');
-  } else {
-    console.log(`Resmas deseadas:      ${cantidadResmas}`);
-    console.log(`Producción por árbol: ${RESMAS_POR_ARBOL} resmas`);
-    console.log('---------------------------------------');
+    // Pedir datos al usuario
+    let resmasDeseadas = prompt("¿Cuántas resmas de papel desea producir?");
     
-    // Math.ceil() se usa porque no puedes talar "medio" árbol para completar
-    console.log(`Árboles exactos:      ${arbolesNecesarios.toFixed(4)}`);
-    console.log(`Árboles a utilizar:   ${Math.ceil(arbolesNecesarios)} (mínimo entero)`);
-  }
-  
-  console.log('---------------------------------------');
+    // Convertir a número
+    resmasDeseadas = parseFloat(resmasDeseadas);
+
+    if (!isNaN(resmasDeseadas)) {
+        const RESMAS_POR_ARBOL = 500; // Valor de ejemplo
+        let arbolesNecesarios = resmasDeseadas / RESMAS_POR_ARBOL;
+
+        alert("Para producir " + resmasDeseadas + " resmas, se necesitan aproximadamente " + arbolesNecesarios.toFixed(2) + " árboles.");
+        
+        // También lo mostramos en la consola del navegador por si acaso
+        console.log("Cálculo completado con éxito.");
+    } else {
+        alert("Por favor, ingresa un número válido.");
+    }
+}
+
+// Ejecutar la función
+iniciarCalculadora();
   console.log('Recuerda usar el papel de forma responsable.');
 
   rl.close();
